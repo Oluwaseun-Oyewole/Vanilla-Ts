@@ -10,7 +10,7 @@ import TaskItem from "./TaskItem.model";
 //    _date: Date;
 //  }
 export interface TasksInterface {
-  tasks: TaskItem[];
+  allTasks: TaskItem[];
   saveTask(): void;
   loadTasks(): void;
   clearTasks(): void;
@@ -25,7 +25,7 @@ export default class Tasks implements TasksInterface {
   // A private constructor prevents direct instantiation
   private constructor(private _taskLists: TaskItem[] = []) {}
 
-  get tasks() {
+  get allTasks() {
     return this._taskLists;
   }
   saveTask(): void {
@@ -43,22 +43,22 @@ export default class Tasks implements TasksInterface {
     this._taskLists.push(taskObject);
     this.saveTask();
   }
-  loadTasks(): void {
+  loadTasks() {
     const all_lists = localStorage.getItem("tasks");
     const parsed_list: TaskItem[] = JSON.parse(all_lists!);
-
-    parsed_list.forEach((task) => {
-      const newTaskItem = new TaskItem(
-        task.id,
-        task.title,
-        task.taskPriority,
-        task.taskEffort,
-        task.taskStatus,
-        task.hasDueDate,
-        task.date
-      );
-      Tasks.instance.addTask(newTaskItem);
-    });
+    return parsed_list;
+    // parsed_list.forEach((task) => {
+    //   const newTaskItem = new TaskItem(
+    //     task.id,
+    //     task.title,
+    //     task.taskPriority,
+    //     task.taskEffort,
+    //     task.taskStatus,
+    //     task.hasDueDate,
+    //     task.date
+    //   );
+    //   Tasks.instance.addTask(newTaskItem);
+    // });
   }
   // accessing out singleton instance
   public static getInstance(): Tasks {

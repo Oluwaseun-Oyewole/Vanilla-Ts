@@ -2,7 +2,7 @@ import Tasks from "../model/Tasks.model";
 
 export interface DOMList {
   ul: HTMLUListElement;
-  clear(): void;
+  // clear(): void;
   render(task: Tasks): void;
 }
 
@@ -10,14 +10,18 @@ export default class TaskTemplate implements DOMList {
   ul: HTMLUListElement;
   static instance: TaskTemplate = new TaskTemplate();
   private constructor() {
-    this.ul = document.getElementById("ListItems") as HTMLUListElement;
+    this.ul = document.getElementById("allTasks") as HTMLUListElement;
   }
-  clear(): void {
-    this.ul.innerHTML = "";
+  get UL() {
+    return this.ul;
   }
+  // clear(): void {
+  //   this.ul.innerHTML = "";
+  // }
   render(task: Tasks): void {
-    this.clear();
-    task.tasks.map((item) => {
+    console.log("tasksksk", task);
+    // this.clear();
+    task.allTasks.map((item) => {
       const li = document.createElement("li") as HTMLLIElement;
       li.tabIndex = 0;
       li.className = "bg-red-500";
