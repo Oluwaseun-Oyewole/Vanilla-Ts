@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Manager</title>
+    <link rel="stylesheet" href="./src/output.css" />
+    <link rel="stylesheet" href="./src/style.css" />
+  </head>
+  <body class="bg-primary800 text-white">
+    <main
+      class="max-w-[90%] mx-auto flex overflow-x-hidden overflow-y-scroll flex-col justify-center w-full min-h-screen flex-wrap"
+    >
+      <form id="taskForm">
+        <section
+          class="grid grid-flow-row xl:grid-flow-col grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 items-start"
+        >
+          <!-- task  inputs -->
+          <div class="bg-primary200 rounded-xl min-h-[227px]">
+            <div class="p-6 flex justify-center flex-col h-full">
+              <h1 class="pb-5 font-bold text-3xl">Tasks</h1>
+              <div
+                class="bg-white px-3 rounded-xl h-[110px] flex flex-col justify-center"
+              >
+                <input
+                  autocomplete="off"
+                  type="text"
+                  id="taskTitle"
+                  name="taskTitle"
+                  class="outline-none border-none text-black font-bold text-lg placeholder:text-sm placeholder:text-black placeholder:font-light w-full rounded-xl px-3 py-1"
+                  placeholder="Type here"
+                />
+
+                <div class="flex justify-between px-2 pt-2">
+                  <div class="flex items-center gap-1">
+                    <div
+                      class="bg-red-500 h-[12px] w-[12px] rounded-full"
+                    ></div>
+                    <div
+                      class="bg-red-500 h-[12px] w-[12px] rounded-full"
+                    ></div>
+                    <div
+                      class="bg-red-500 h-[12px] w-[12px] rounded-full"
+                    ></div>
+                  </div>
+                  <input
+                    type="text"
+                    id="projectClient"
+                    autocomplete="off"
+                    name="projectClient"
+                    class="outline-none border-none text-pretty font-medium text-base placeholder:text-sm text-primary placeholder:text-primary800 placeholder:font-light w-full rounded-xl text-end py-1"
+                    placeholder="Project or Client"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- how it works -->
+          <div class="bg-primary200 rounded-xl">
+            <div class="p-6 flex justify-center flex-col h-full">
+              <h1 class="pb-5 font-bold text-3xl">How it works</h1>
+              <div>
+                <h2 class="text-xl pb-2 font-bold">Priority</h2>
+                <div
+                  class="bg-white px-3 rounded-xl h-[110px] flex flex-col justify-center font-bold gap-2 text-sm"
+                >
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <input type="radio" id="high" name="priority" />
+                      <label for="high" class="text-black pl-2">High</label>
+                    </div>
+                    <div
+                      class="bg-red-500 h-[12px] w-[12px] rounded-full"
+                    ></div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <input type="radio" id="Medium" name="priority" />
+                      <label for="Medium" class="text-black pl-2">Medium</label>
+                    </div>
+                    <div
+                      class="bg-yellow-300 h-[12px] w-[12px] rounded-full"
+                    ></div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <input type="radio" id="Low" name="priority" />
+                      <label for="low" class="text-black pl-2">Low</label>
+                    </div>
+                    <div
+                      class="bg-blue-700 h-[12px] w-[12px] rounded-full"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- level of effort -->
+              <div class="pt-8">
+                <h2 class="text-xl pb-2 font-bold">Level of Effort</h2>
+                <div
+                  class="bg-white px-3 rounded-xl h-[110px] flex flex-col justify-center font-bold gap-2 text-sm"
+                >
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <input type="radio" id="easy" name="levelOfEffort" />
+                      <label for="easy" class="text-black pl-2">Easy</label>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <div
+                        class="bg-blue-800 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                      <div
+                        class="bg-gray-300 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                      <div
+                        class="bg-gray-300 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <input type="radio" id="Moderate" name="levelOfEffort" />
+                      <label for="Moderate" class="text-black pl-2"
+                        >Moderate</label
+                      >
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <div
+                        class="bg-blue-800 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                      <div
+                        class="bg-blue-800 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                      <div
+                        class="bg-gray-300 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                    </div>
+                  </div>
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <input type="radio" id="hard" name="levelOfEffort" />
+                      <label for="hard" class="text-black pl-2">Hard</label>
+                    </div>
+                    <div class="flex items-center gap-1">
+                      <div
+                        class="bg-blue-800 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                      <div
+                        class="bg-blue-800 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                      <div
+                        class="bg-blue-800 h-[12px] w-[12px] rounded-full"
+                      ></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- due dates -->
+          <div class="bg-primary200 rounded-xl">
+            <div class="p-6 flex justify-center flex-col h-full">
+              <h1 class="pb-5 font-bold text-3xl">Due Dates</h1>
+
+              <h2 class="pb-5 font-light text-base">
+                If a task has a due date. It's easy to add one:
+              </h2>
+              <div class="pt-2">
+                <h3 class="text-base !font-light pb-2">1. Check as due date</h3>
+                <div
+                  class="bg-dark px-3 rounded-xl h-[80px] flex flex-col font-bold gap-2 text-sm"
+                >
+                  <h3 class="pt-3">Priority &lt;&gt; Effect</h3>
+                  <div class="flex items-center justify-between">
+                    <h class="text-gray-300 text-xs">Has due date</h>
+
+                    <div class="flex items-center gap-2">
+                      <input
+                        type="checkbox"
+                        id="true"
+                        name="hasDueDate"
+                        class="rounded-lg"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <h2 class="text-base font-light pb-2 pt-5">
+                  2. Select the day it's due
+                </h2>
+                <div
+                  class="bg-dark px-3 rounded-xl h-[110px] flex flex-col justify-center font-bold gap-2 text-sm"
+                >
+                  <input
+                    type="datetime-local"
+                    name="date"
+                    id="date"
+                    class="px-2 rounded-lg py-2"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div>
+          <p id="titleError"></p>
+          <p id="projectClientError"></p>
+        </div>
+        <div class="w-1/2 my-5">
+          <button type="submit" class="bg-primary200 w-1/2 rounded-sm">
+            Create Task
+          </button>
+        </div>
+      </form>
+      <script type="module" src="/src/main.ts"></script>
+    </main>
+  </body>
+</html>
