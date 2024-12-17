@@ -9,7 +9,7 @@
   </head>
   <body class="bg-primary800 text-white">
     <main
-      class="max-w-[90%] mx-auto flex overflow-x-hidden overflow-y-scroll flex-col justify-center w-full min-h-screen flex-wrap"
+      class="max-w-[90%] mx-auto flex flex-col justify-center w-full min-h-screen flex-wrap"
     >
       <form id="taskForm">
         <section
@@ -18,7 +18,7 @@
           <!-- task  inputs -->
           <div class="bg-primary200 rounded-xl min-h-[227px]">
             <div class="p-6 flex justify-center flex-col h-full">
-              <h1 class="pb-5 font-bold text-3xl">Tasks</h1>
+              <h1 class="pb-5 font-bold text-lg md:text-3xl">Tasks</h1>
               <div
                 class="bg-white px-3 rounded-xl h-[110px] flex flex-col justify-center"
               >
@@ -59,9 +59,9 @@
           <!-- how it works -->
           <div class="bg-primary200 rounded-xl">
             <div class="p-6 flex justify-center flex-col h-full">
-              <h1 class="pb-5 font-bold text-3xl">How it works</h1>
+              <h1 class="pb-5 font-bold text-lg md:text-3xl">How it works</h1>
               <div>
-                <h2 class="text-xl pb-2 font-bold">Priority</h2>
+                <h2 class="text-base md:text-xl pb-2 font-bold">Priority</h2>
                 <div
                   class="bg-white px-3 rounded-xl h-[110px] flex flex-col justify-center font-bold gap-2 text-sm"
                 >
@@ -97,7 +97,9 @@
 
               <!-- level of effort -->
               <div class="pt-8">
-                <h2 class="text-xl pb-2 font-bold">Level of Effort</h2>
+                <h2 class="text-base md:text-xl pb-2 font-bold">
+                  Level of Effort
+                </h2>
                 <div
                   class="bg-white px-3 rounded-xl h-[110px] flex flex-col justify-center font-bold gap-2 text-sm"
                 >
@@ -161,7 +163,7 @@
           <!-- due dates -->
           <div class="bg-primary200 rounded-xl">
             <div class="p-6 flex justify-center flex-col h-full">
-              <h1 class="pb-5 font-bold text-3xl">Due Dates</h1>
+              <h1 class="pb-5 font-bold text-lg md:text-3xl">Due Dates</h1>
 
               <h2 class="pb-5 font-light text-base">
                 If a task has a due date. It's easy to add one:
@@ -204,17 +206,33 @@
             </div>
           </div>
         </section>
-        <div>
+        <div class="pt-5 pb-5 md:pb-5">
           <p id="titleError" class="text-sm"></p>
           <p id="projectClientError" class="text-sm"></p>
         </div>
-        <div class="w-1/2 my-5">
-          <button type="submit" class="bg-primary200 w-1/2 rounded-sm">
-            Create Task
-          </button>
-        </div>
+
+        <button type="submit" class="create">Add Task</button>
       </form>
-      <ul class="allTasks"></ul>
+
+      <div class="task__container">
+        <div class="tasks__details">
+          <div class="tasks_details_content">
+            <div class="task_details_todo">
+              <img src="/src/assets/images/todo.svg" alt="todo" />
+              <h1 class="text-primary800 text-lg">To-Do</h1>
+            </div>
+            <ul class="allTasks" id="allTasks"></ul>
+          </div>
+          <div class="tasks_details_content">
+            <div class="task_details_todo">
+              <img src="/src/assets/images/done.svg" alt="todo" />
+              <h1 class="text-lg">Done</h1>
+            </div>
+            <ul class="allTasks" id="allTasks"></ul>
+          </div>
+        </div>
+      </div>
+
       <script type="module" src="/src/main.ts"></script>
     </main>
   </body>

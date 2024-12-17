@@ -3,18 +3,20 @@ export type Effort = "Easy" | "Moderate" | "Hard";
 export type Status = "IN-PROGRESS" | "DONE" | "CREATED";
 
 export interface TaskInterface {
-  id: string;
+  id: number;
   title: string;
   taskPriority: Priority;
   taskEffort: Effort;
   taskStatus: Status;
   hasDueDate?: boolean;
   date: Date;
+  projectClient: string;
 }
 
 export default class TaskItem implements TaskInterface {
   constructor(
-    private _id = "",
+    private _id = 0,
+    private _projectClient = "",
     private _title = "",
     private _task_priority: Priority = "Low",
     private _task_effort: Effort = "Easy",
@@ -26,6 +28,9 @@ export default class TaskItem implements TaskInterface {
   //   getters
   get id() {
     return this._id;
+  }
+  get projectClient() {
+    return this._projectClient;
   }
   public get title() {
     return this._title;
@@ -52,8 +57,12 @@ export default class TaskItem implements TaskInterface {
   }
 
   //   setters
-  set id(id: string) {
+  set id(id: number) {
     this._id = id;
+  }
+
+  set projectClient(project: string) {
+    this._projectClient = project;
   }
   set title(title: string) {
     this._title = title;

@@ -28,3 +28,92 @@ input[type="datetime-local"] {
 input[type="datetime-local"]::-webkit-calendar-picker-indicator {
   filter: invert(0);
 }
+
+.task__container {
+  width: 75%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+.tasks_details_content {
+  background: #d5ccff;
+  width: 48.5%;
+  border-radius: 0.5rem;
+  padding: 20px;
+}
+.tasks__details {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.task_details_todo {
+  display: flex;
+  align-items: center;
+  gap: 5;
+  padding-bottom: 15px;
+}
+
+.task_details_todo > img {
+  width: 30px;
+  padding-right: 10px;
+}
+
+.task_details_todo > h1 {
+  color: #2b1887;
+  font-weight: bolder;
+}
+
+.allTask_item {
+  background: white;
+  color: black;
+  border-radius: 0.5rem;
+  margin-top: 10px;
+  padding: 10px 10px;
+}
+
+.allTasks {
+  height: 550px;
+  overflow-y: scroll;
+}
+.allTasks > li {
+  padding: 20px;
+  margin-top: 10px;
+}
+.allTasks > li > div:nth-child(2) {
+  padding-top: 20px;
+}
+
+.allTasks > li > div:nth-child(1) > button {
+  background-color: red;
+  padding: 1px 10px;
+  border-radius: 5px;
+}
+
+.create {
+  background-color: #2c43dd;
+  width: 140px;
+  font-size: 0.8rem;
+  border-radius: 0.5rem;
+  padding: 15px 0;
+}
+
+.create:hover {
+  opacity: 0.9;
+  transition: all ease-in-out 500ms;
+}
+
+@media (max-width: 768px) {
+  .tasks_details_content {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .tasks__details {
+    flex-direction: column;
+  }
+  .task__container {
+    width: 100%;
+  }
+  .tasks__details {
+    margin-top: 50px;
+  }
+}

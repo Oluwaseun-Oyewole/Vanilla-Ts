@@ -1,21 +1,12 @@
-import TaskItem from "./TaskItem.model";
+import TaskItem, { Effort, Priority, Status } from "./TaskItem.model";
 
-//  {
-//    _id: string;
-//    _title: string;
-//    _task_priority: Priority;
-//    _task_effort: Effort;
-//    _task_status: Status;
-//    _has_due_date: boolean;
-//    _date: Date;
-//  }
 export interface TasksInterface {
   allTasks: TaskItem[];
   saveTask(): void;
   loadTasks(): void;
   clearTasks(): void;
   addTask(taskObject: TaskItem): void;
-  deleteTask(id: string): void;
+  deleteTask(id: number): void;
 }
 
 export default class Tasks implements TasksInterface {
@@ -35,7 +26,7 @@ export default class Tasks implements TasksInterface {
     this._taskLists = [];
     this.saveTask();
   }
-  deleteTask(id: string): void {
+  deleteTask(id: number): void {
     this._taskLists.filter((item) => item.id !== id);
     this.saveTask();
   }
@@ -45,20 +36,30 @@ export default class Tasks implements TasksInterface {
   }
   loadTasks() {
     const all_lists = localStorage.getItem("tasks");
-    const parsed_list: TaskItem[] = JSON.parse(all_lists!);
-    return parsed_list;
-    // parsed_list.forEach((task) => {
-    //   const newTaskItem = new TaskItem(
-    //     task.id,
-    //     task.title,
-    //     task.taskPriority,
-    //     task.taskEffort,
-    //     task.taskStatus,
-    //     task.hasDueDate,
-    //     task.date
-    //   );
-    //   Tasks.instance.addTask(newTaskItem);
-    // });
+    const parsed_list: {
+      _id: number;
+      _projectClient: string;
+      _title: string;
+      _task_priority: Priority;
+      _task_effort: Effort;
+      _task_status: Status;
+      _has_due_date: boolean;
+      _date: Date;
+    }[] = JSON.parse(all_lists!);
+    parsed_list?.forEach((task) => {
+      // create a new instance of the object
+      const newTaskItem = new TaskItem(
+        task._id,
+        task._projectClient,
+        task._title,
+        task._task_priority,
+        task._task_effort,
+        task._task_status,
+        task._has_due_date,
+        task._date
+      );
+      Tasks.instance.addTask(newTaskItem);
+    });
   }
   // accessing out singleton instance
   public static getInstance(): Tasks {

@@ -10,16 +10,42 @@ function clearError(errorElement: HTMLDivElement): void {
   errorElement.textContent = "";
 }
 
+function render(task: Tasks): void {
+  console.log("tasksksk", task);
+  // this.clear();
+  task.allTasks.map((item) => {
+    const li = document.createElement("li") as HTMLLIElement;
+    li.tabIndex = 0;
+    li.className = "bg-red-500";
+
+    const heading = document.createElement("h1");
+    heading.textContent = item.title;
+    li.append(heading);
+
+    const button = document.createElement("button");
+    button.textContent = "x";
+    button.addEventListener("click", () => {
+      task.deleteTask(item.id);
+    });
+    li.append(button);
+    // this.render(task);
+
+    // this.ul.appendChild(li);
+  });
+}
+
 const loadApp = () => {
-  const id = Math.floor(Math.random() * 100).toString();
+  const id = Math.floor(Math.random() * 100);
   // class singleton
   const tasks = Tasks.getInstance();
-  const template = TaskTemplate.instance;
+  const template = TaskTemplate.getInstance();
 
   // selectors
   const taskForm = document.getElementById("taskForm") as HTMLFormElement;
   const taskInput = document.getElementById("taskTitle") as HTMLInputElement;
-  const projectInput = document.getElementById("projectClient");
+  const projectInput = document.getElementById(
+    "projectClient"
+  ) as HTMLInputElement;
 
   // form listerner
   taskForm.addEventListener("submit", (event) => {
@@ -30,7 +56,7 @@ const loadApp = () => {
     ) as HTMLDivElement;
     const formData = new FormData(taskForm);
     const taskTitle = formData.get("taskTitle") as string;
-    const projectClient = formData.get("projectClient");
+    const projectClient = formData.get("projectClient") as string;
     const taskPriority = (
       document.querySelector(
         "input[name='priority']:checked"
@@ -44,35 +70,31 @@ const loadApp = () => {
     )?.id;
     const date = formData.get("date") as unknown as Date;
 
-    if (!projectClient) {
+    if (!projectClient || !taskTitle) {
       showError(projectClientError, "Project or client is required.");
-    } else {
-      clearError(projectClientError);
-    }
-
-    if (!taskTitle) {
       showError(titleError, "Task title is required.");
     } else {
+      clearError(projectClientError);
       clearError(titleError);
+      taskInput?.addEventListener("input", () => clearError(titleError));
+      projectInput?.addEventListener("input", () =>
+        clearError(projectClientError)
+      );
+      const newTask = new TaskItem(
+        id,
+        projectClient,
+        taskTitle,
+        taskPriority as Priority,
+        levelOfEffort as Effort,
+        "CREATED",
+        Boolean(hasDueDate),
+        date
+      );
+      tasks.addTask(newTask);
+      template.render(tasks);
+      taskInput.value = "";
+      projectInput.value = "";
     }
-
-    taskInput?.addEventListener("input", () => clearError(titleError));
-    projectInput?.addEventListener("input", () =>
-      clearError(projectClientError)
-    );
-
-    const newTask = new TaskItem(
-      id,
-      taskTitle,
-      taskPriority as Priority,
-      levelOfEffort as Effort,
-      "CREATED",
-      Boolean(hasDueDate),
-      date
-    );
-    tasks.addTask(newTask);
-    // template.render(tasks);
-    console.log("new tasks new tasks", newTask);
   });
 
   tasks.loadTasks();
