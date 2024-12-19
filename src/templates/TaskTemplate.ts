@@ -14,10 +14,6 @@ export default class TaskTemplate implements DOMList {
     this.ul = document.getElementById("allTasks") as HTMLUListElement;
   }
 
-  get UL() {
-    return this.ul;
-  }
-
   clear(): void {
     this.ul.innerHTML = "";
   }
@@ -26,7 +22,6 @@ export default class TaskTemplate implements DOMList {
     const clearButton = document.getElementById(
       "clearList"
     ) as HTMLButtonElement;
-
     clearButton.innerHTML = task.allTasks.length > 0 ? "Clear" : "";
     clearButton?.addEventListener("click", () => {
       this.clear();
@@ -36,13 +31,22 @@ export default class TaskTemplate implements DOMList {
 
   render(task: Tasks) {
     this.clear();
+    const displayTasks = document.getElementById(
+      "tasks_details_content"
+    ) as HTMLDivElement;
+
+    if (task.allTasks.length === 0) {
+      displayTasks.className = "hidden";
+    } else {
+      displayTasks.className = "tasks_details_content block";
+    }
+
     task.allTasks.map((item) => {
       const li = document.createElement("li") as HTMLLIElement;
       const divContainerTop = document.createElement("div") as HTMLDivElement;
       const divContainerBottom = document.createElement(
         "div"
       ) as HTMLDivElement;
-
       li.tabIndex = 0;
       li.className = "text-black bg-white rounded-lg text-sm";
       li.classList.add("allTask_items");
@@ -53,6 +57,9 @@ export default class TaskTemplate implements DOMList {
       const priority = document.createElement("h2");
       const button = document.createElement("button") as HTMLButtonElement;
       button.type = "button";
+      // const checkbox = document.createElement("input") as HTMLInputElement;
+      // checkbox.type = "checkbox";
+      // checkbox.id = "dynamic-checkbox";
 
       assignProject.textContent = item.projectClient;
       priority.textContent = item.taskPriority;
@@ -74,6 +81,7 @@ export default class TaskTemplate implements DOMList {
       divContainerTop.append(button);
 
       button.addEventListener("click", () => {
+        console.log(task.allTasks.length);
         task.deleteTask(item.id);
         this.render(task);
       });

@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body class="bg-primary800 text-white">
-    <main class="max-w-[90%] mx-auto w-full min-h-screen">
+    <main
+      class="max-w-[90%] mx-auto w-full min-h-screen flex flex-col items-center justify-center"
+    >
       <form id="taskForm">
         <section
           class="grid grid-flow-row xl:grid-flow-col grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 items-start"
@@ -219,11 +221,11 @@
 
       <div class="task__container">
         <div id="tasks__details" class="tasks__details">
-          <div id="tasks_details_content" class="tasks_details_content">
+          <div id="tasks_details_content" class="hidden">
             <div class="flex items-center justify-between">
               <div class="task_details_todo">
                 <img src="/src/assets/images/todo.svg" alt="todo" />
-                <h1 class="text-primary800 text-lg">To-Do</h1>
+                <h1 class="text-primary800 text-lg">To-Do Task</h1>
               </div>
               <button class="clear" id="clearList"></button>
             </div>

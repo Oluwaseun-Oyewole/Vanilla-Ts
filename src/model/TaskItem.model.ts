@@ -11,6 +11,7 @@ export interface TaskInterface {
   hasDueDate?: boolean;
   date: Date;
   projectClient: string;
+  hasCompleted?: boolean;
 }
 
 export default class TaskItem implements TaskInterface {
@@ -22,12 +23,17 @@ export default class TaskItem implements TaskInterface {
     private _task_effort: Effort = "Easy",
     private _task_status: Status = "CREATED",
     private _has_due_date = false,
-    private _date = new Date()
+    private _date = new Date(),
+    private _hasCompleted = false
   ) {}
 
   //   getters
   get id() {
     return this._id;
+  }
+
+  get hasCompleted() {
+    return this._hasCompleted;
   }
   get projectClient() {
     return this._projectClient;
@@ -81,5 +87,8 @@ export default class TaskItem implements TaskInterface {
   }
   set date(date: Date) {
     this._date = date;
+  }
+  set hasCompleted(completed: boolean) {
+    this._hasCompleted = completed;
   }
 }

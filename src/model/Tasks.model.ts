@@ -56,6 +56,7 @@ export default class Tasks implements TasksInterface {
       _task_status: Status;
       _has_due_date: boolean;
       _date: Date;
+      _hasCompleted?: boolean;
     }[] = JSON.parse(all_lists!);
     parsed_list?.forEach((task) => {
       // create a new instance of the object
@@ -67,7 +68,8 @@ export default class Tasks implements TasksInterface {
         task._task_effort,
         task._task_status,
         task._has_due_date,
-        task._date
+        task._date,
+        task._hasCompleted
       );
       Tasks.instance.addTask(newTaskItem);
     });
