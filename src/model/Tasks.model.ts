@@ -12,6 +12,7 @@ export interface TasksInterface {
 export default class Tasks implements TasksInterface {
   // singleton pattern
   private static instance: Tasks;
+  private storageKey = "tasks";
 
   // A private constructor prevents direct instantiation
   private constructor(private _taskLists: TaskItem[] = []) {}
@@ -19,23 +20,33 @@ export default class Tasks implements TasksInterface {
   get allTasks() {
     return this._taskLists;
   }
+  // accessing our singleton instance
+  public static getInstance(): Tasks {
+    if (!Tasks.instance) {
+      Tasks.instance = new Tasks();
+    }
+    return Tasks.instance;
+  }
+
   saveTask(): void {
-    localStorage.setItem("tasks", JSON.stringify(this._taskLists));
+    localStorage.setItem(this.storageKey, JSON.stringify(this._taskLists));
   }
   clearTasks(): void {
     this._taskLists = [];
-    this.saveTask();
-  }
-  deleteTask(id: number): void {
-    this._taskLists.filter((item) => item.id !== id);
     this.saveTask();
   }
   addTask(taskObject: TaskItem): void {
     this._taskLists.push(taskObject);
     this.saveTask();
   }
+
+  deleteTask(id: number): void {
+    this._taskLists = this._taskLists.filter((item) => item.id !== id);
+    this.saveTask();
+  }
   loadTasks() {
-    const all_lists = localStorage.getItem("tasks");
+    const all_lists = localStorage.getItem(this.storageKey);
+
     const parsed_list: {
       _id: number;
       _projectClient: string;
@@ -60,12 +71,5 @@ export default class Tasks implements TasksInterface {
       );
       Tasks.instance.addTask(newTaskItem);
     });
-  }
-  // accessing out singleton instance
-  public static getInstance(): Tasks {
-    if (!Tasks.instance) {
-      Tasks.instance = new Tasks();
-    }
-    return Tasks.instance;
   }
 }

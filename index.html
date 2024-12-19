@@ -8,9 +8,7 @@
     <link rel="stylesheet" href="./src/style.css" />
   </head>
   <body class="bg-primary800 text-white">
-    <main
-      class="max-w-[90%] mx-auto flex flex-col justify-center w-full min-h-screen flex-wrap"
-    >
+    <main class="max-w-[90%] mx-auto w-full min-h-screen">
       <form id="taskForm">
         <section
           class="grid grid-flow-row xl:grid-flow-col grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 items-start"
@@ -27,7 +25,7 @@
                   type="text"
                   id="taskTitle"
                   name="taskTitle"
-                  class="outline-none border-none text-black font-bold text-lg placeholder:text-sm placeholder:text-black placeholder:font-light w-full rounded-xl px-3 py-1"
+                  class="outline-none border-none text-black font-medium placeholder:text-sm placeholder:text-black placeholder:font-light w-full rounded-xl px-3 py-1"
                   placeholder="Type here"
                 />
 
@@ -85,7 +83,7 @@
                   </div>
                   <div class="flex items-center justify-between">
                     <div>
-                      <input type="radio" id="Low" name="priority" />
+                      <input type="radio" id="Low" name="priority" checked />
                       <label for="low" class="text-black pl-2">Low</label>
                     </div>
                     <div
@@ -105,7 +103,12 @@
                 >
                   <div class="flex items-center justify-between">
                     <div>
-                      <input type="radio" id="easy" name="levelOfEffort" />
+                      <input
+                        type="radio"
+                        id="easy"
+                        name="levelOfEffort"
+                        checked
+                      />
                       <label for="easy" class="text-black pl-2">Easy</label>
                     </div>
                     <div class="flex items-center gap-1">
@@ -215,21 +218,24 @@
       </form>
 
       <div class="task__container">
-        <div class="tasks__details">
-          <div class="tasks_details_content">
-            <div class="task_details_todo">
-              <img src="/src/assets/images/todo.svg" alt="todo" />
-              <h1 class="text-primary800 text-lg">To-Do</h1>
+        <div id="tasks__details" class="tasks__details">
+          <div id="tasks_details_content" class="tasks_details_content">
+            <div class="flex items-center justify-between">
+              <div class="task_details_todo">
+                <img src="/src/assets/images/todo.svg" alt="todo" />
+                <h1 class="text-primary800 text-lg">To-Do</h1>
+              </div>
+              <button class="clear" id="clearList"></button>
             </div>
             <ul class="allTasks" id="allTasks"></ul>
           </div>
-          <div class="tasks_details_content">
+          <!-- <div class="tasks_details_content">
             <div class="task_details_todo">
               <img src="/src/assets/images/done.svg" alt="todo" />
               <h1 class="text-lg">Done</h1>
             </div>
             <ul class="allTasks" id="allTasks"></ul>
-          </div>
+          </div> -->
         </div>
       </div>
 
