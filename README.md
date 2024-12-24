@@ -1,1 +1,1 @@
-Task manager with OOP in typescript
+Vanilla OOP Typescript
